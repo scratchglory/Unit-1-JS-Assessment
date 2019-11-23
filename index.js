@@ -165,9 +165,34 @@ function getCargoCapacityTotal(character) {
  *
  * Sample data expected output: `X-wing`
  */
+function compare(a, b) {
+  const shipA = a.max_atmosphering_speed;
+  const shipB = b.max_atmosphering_speed;
+
+  let comparison = 0;
+  if (shipA > shipB) {
+    comparison = 1;
+  } else if (shipA < shipB) {
+    comparison = -1;
+  }
+  return comparison;
+}
+
 function getFastestStarshipName(character) {
   // TODO: Add your code here.
-  console.log(character.starship);
+  const charShip = character.starships;
+  //   let stars = [];
+  //   for (let i = 0; charShip.length > i; i++) {
+  //     stars.push(charShip[i].max_atmosphering_speed);
+  //   }
+
+  //   let largest = Math.max.apply(Math, stars);
+  if (charShip.length === 0) {
+    return "none";
+  } else {
+    let shipOrder = charShip.sort(compare);
+    return shipOrder[0].name;
+  }
 }
 
 /**
